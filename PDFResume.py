@@ -21,7 +21,7 @@ class PDFResume(FPDF):
 
         pass
 
-    def calculate_center_coordinate(self, text: str) -> int:
+    def calculate_center_coordinate(self, text: str) -> float:
         """
         Calculate the start coordinate to align the text into the center of a statement
         :param text: given string to be calculated
