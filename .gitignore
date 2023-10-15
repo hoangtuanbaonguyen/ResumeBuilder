@@ -1,0 +1,19 @@
+# Ignore Python bytecode files
+__pycache__/
+
+# Ignore IntelliJ IDEA cache
+.idea/
+
+# Ignore virtual environment directories
+venv/
+env/
+
+# Ignore log files and temp files
+*.log
+*.tmp
+
+# Ignore database files
+*.db
+
+# Ignore pdf files, avoid personal information leaks
+*.pdf
