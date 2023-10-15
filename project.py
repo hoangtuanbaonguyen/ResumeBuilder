@@ -1,6 +1,8 @@
+from resume_builder_prompt import resume_program
+
 
 def main():
-    pass
+    resume_program()
 
 
 if __name__ == "__main__":

@@ -1,16 +1,16 @@
-from components import PersonalInfo, Experience, SkillSets, Certificate, Project, Education
+from typing import List
+from resume_components import PersonalInfo, Experience, SkillSets, Certificate, Project, Education
 
 
 class Resume:
     def __init__(self):
-        self.personal_info = None
-        self.educations = []
-        self.experiences = []
-        self.skills = None
-        self.projects = []
-        self.certificates = []
-        self.pdf = None
-        self.summary = None
+        self.personal_info: PersonalInfo = None
+        self.educations: List[Education] = None
+        self.experiences: List[Experience] = None
+        self.skills: SkillSets = None
+        self.projects: List[Project] = None
+        self.certificates: List[Certificate] = None
+        self.summary: str = None
 
     def add_education(self, education):
         self.educations.append(education)
@@ -77,6 +77,7 @@ def sample_resume() -> Resume:
     personal_info = PersonalInfo(
         first_name="Tuan",
         last_name="Bao",
+        job_title="Software Engineer",
         address="123 Main St, Cityville, State, 12345",
         email="tuanbao@example.com",
         phone="(123) 456-7890",
@@ -88,9 +89,7 @@ def sample_resume() -> Resume:
               "my skills and expertise in programming and problem-solving will contribute to the company's success."
 
     # Prepare work experience
-    work_experience = []
-    # Job 1
-    work_experience.append(Experience(
+    work_experience = [Experience(
         company_name="Tech Solutions",
         job_title="Software Developer Intern",
         location="Cityville, State",
@@ -101,9 +100,7 @@ Collaborated with a team of developers to design and implement software solution
 Assisted in debugging and resolving software defects.
 Participated in code reviews and provided constructive feedback to peers.
         '''
-    ))
-    # Job 2
-    work_experience.append(Experience(
+    ), Experience(
         company_name="InnovateTech Solutions",
         job_title="Software Engineer",
         location="Cityville, State",
@@ -117,7 +114,9 @@ Conducted regular code reviews, ensuring adherence to best practices and identif
 Assisted in the mentorship of junior developers, providing guidance and support in problem-solving and technical skills development.
 Actively participated in the Agile development process, contributing innovative ideas during sprint planning sessions and retrospectives.
         '''
-    ))
+    )]
+    # Job 1
+    # Job 2
 
     # Prepare educations
     educations = []
@@ -168,7 +167,8 @@ Actively participated in the Agile development process, contributing innovative 
         title="Mobile App Development Project",
         technologies="React Native, Node.js, MongoDB",
         link="https://example.com/task-manager",
-        description="Built a mobile task manager app for Android and iOS devices. Implemented user authentication and real-time task updates."
+        description="Built a mobile task manager app for Android and iOS devices. Implemented user authentication and "
+                    "real-time task updates."
     )
 
     project3 = Project(
@@ -176,7 +176,8 @@ Actively participated in the Agile development process, contributing innovative 
         title="Data Science Project",
         technologies="Python, Pandas, Matplotlib, Tableau",
         link="https://example.com/data-dashboard",
-        description="Created a data visualization dashboard for analyzing sales data. Used various Python libraries and integrated with Tableau for interactive visualizations."
+        description="Created a data visualization dashboard for analyzing sales data. Used various Python libraries "
+                    "and integrated with Tableau for interactive visualizations."
     )
     projects.append(project1)
     projects.append(project2)
@@ -212,7 +213,7 @@ Actively participated in the Agile development process, contributing innovative 
     sample.projects = projects
     sample.skills = skill_sets
     sample.personal_info = personal_info
+    sample.experiences = work_experience
     sample.summary = summary
     # Return
     return sample
-

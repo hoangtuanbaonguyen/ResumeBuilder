@@ -1,8 +1,11 @@
+from typing import List
+
 from fpdf import FPDF
-from components import PersonalInfo, Experience, Education, SkillSets, Project, Certificate
+
+from resume_components import PersonalInfo, Experience, Education, SkillSets, Project, Certificate
 
 
-class PDFResume(FPDF):
+class ResumeBuilder(FPDF):
     def __init__(self):
         super().__init__()
         self.default_setting()
@@ -32,15 +35,16 @@ class PDFResume(FPDF):
                                    literal="B",
                                    font_size=16,
                                    position="c",
-                                   text=fullname)
+                                   text=fullname.strip())
 
         # Attach headline
+        self.ln(5)
         self.set_font('Times', 'B', 10)
         self._add_text_at_position(font="Times",
                                    literal="B",
                                    font_size=10,
                                    position="c",
-                                   text=personal_info.job_title)
+                                   text=personal_info.job_title.strip())
 
         # Attach address
         self.ln(5)
@@ -49,12 +53,17 @@ class PDFResume(FPDF):
                                    literal="B",
                                    font_size=10,
                                    position="c",
-                                   text=personal_info.address,
+                                   text=personal_info.address.strip(),
                                    text_color=color)
 
         # Attach contacts
         self.ln(5)
-        contacts = [personal_info.phone, personal_info.email, *personal_info.links]  # Unpack links
+        contacts = [personal_info.phone, personal_info.email, *personal_info.links]
+        # Filter contact list
+        for contact in contacts:
+            if len(contact.strip()) == 0:
+                contacts.remove(contact)
+        # Construct contacts str
         contacts_str = (" | ".join(contacts))
         self._add_text_at_position(font="Times",
                                    literal="B",
@@ -75,7 +84,7 @@ class PDFResume(FPDF):
         self._add_liner("Summary")
         self._add_text_box(text=text)
 
-    def add_work_experiences(self, work_experience: list[Experience]):
+    def add_work_experiences(self, work_experience: List[Experience]):
         """
         Add work experience component into the pdf file
         :param work_experience:
@@ -134,7 +143,7 @@ class PDFResume(FPDF):
         # Change font back to normal
         self._set_default_font()
 
-    def add_educations(self, educations: list[Education]):
+    def add_educations(self, educations: List[Education]):
         """
         Add educations into the pdf file
         :param educations:
@@ -202,7 +211,7 @@ class PDFResume(FPDF):
                 self.ln(4)
         self.ln(-4)
 
-    def add_projects(self, projects: list[Project]):
+    def add_projects(self, projects: List[Project]):
         """
         Add projects into pdf file
         :param projects:
@@ -241,7 +250,7 @@ class PDFResume(FPDF):
         self.ln(2)
         self._add_text_box(text=project.description)
 
-    def add_certificates(self, certificates: list[Certificate], vertical_order=False):
+    def add_certificates(self, certificates: List[Certificate], vertical_order=False):
         """
         Add certificates into the pdf file
         :param vertical_order: True if arrange certificate by vertical, otherwise by horizontal
