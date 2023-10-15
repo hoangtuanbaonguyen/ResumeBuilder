@@ -369,15 +369,18 @@ class ResumeBuilder(FPDF):
 
         if text_color is None:
             text_color = [0, 0, 0]
+
         text = self.multilines_text(text, "+")
 
         # Attach a multi cell, which is a text box
+        self.set_x(self.l_margin - 1)
         self.set_font(font, literal, font_size)
         self.set_text_color(*text_color)
         self.multi_cell(w=0, h=ln, text=text, align="L", border=0)
 
         # Change font back to normal
         self._set_default_font()
+        self.set_x(self.l_margin + 1)
 
     def _add_text_at_position(self,
                               font="Times",

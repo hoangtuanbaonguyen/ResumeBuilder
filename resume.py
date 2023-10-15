@@ -184,7 +184,6 @@ Actively participated in the Agile development process, contributing innovative 
     projects.append(project3)
 
     # Prepare certificates
-    certificates = []
     certificate1 = Certificate(
         name="Python Programming",
         title="Certificate of Completion",
@@ -205,6 +204,7 @@ Actively participated in the Agile development process, contributing innovative 
         link="https://www.example.com/certificates/data-analysis",
         issued_by="Data Science Academy"
     )
+    certificates = [certificate1, certificate2, certificate3]
 
     # Construct resume
     sample = Resume()
