@@ -4,12 +4,12 @@ from resume_components import PersonalInfo, Experience, SkillSets, Certificate, 
 
 class Resume:
     def __init__(self):
-        self.summary: Summary = None
         self.personal_info: PersonalInfo = None
+        self.summary: Summary = None
         self.educations: List[Education] = None
         self.experiences: List[Experience] = None
-        self.skills: SkillSets = None
         self.projects: List[Project] = None
+        self.skills: SkillSets = None
         self.certificates: List[Certificate] = None
 
     def add_education(self, education):
