@@ -34,12 +34,12 @@ pip install -r requirements.txt
 * [mypy](https://mypy.readthedocs.io/en/stable/)
 * [fpdf2](https://pypi.org/project/fpdf2/)
 # Usage
-##### 1 . Run ResumeBuilder:
+- Run ResumeBuilder:
 ```bash
 python project.py
 ```
-##### 2 . Follow the prompt in the terminal to input your personal information, summary, work experiences, projects, educations, skills, etc.
-##### 3 . Type '**quit**' or '**q**' to save and exit the terminal. The application will generate a resume and save it as a PDF file in the project directory.
+- Follow the prompt in the terminal to input your personal information, summary, work experiences, projects, educations, skills, etc.
+- Type '**quit**' or '**q**' to save and exit the terminal. The application will generate a resume and save it as a PDF file in the project directory.
 
 # License:
 
