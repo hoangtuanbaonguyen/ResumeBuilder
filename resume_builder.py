@@ -368,7 +368,7 @@ class ResumeBuilder(FPDF):
         if text_color is None:
             text_color = [0, 0, 0]
 
-        text = self.multilines_text(text, "")
+        text = self.multilines_text(text, "+")
 
         # Attach a multi cell, which is a text box
         self.set_x(self.l_margin - 1)
