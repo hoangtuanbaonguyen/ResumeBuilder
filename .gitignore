@@ -17,3 +17,6 @@ env/
 
 # Ignore pdf files, avoid personal information leaks
 *.pdf
+
+# Except for pdf files inside the sample/ directory
+!sample/*.pdf
