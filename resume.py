@@ -12,7 +12,6 @@ class Resume:
         self.projects: List[Project] = None
         self.certificates: List[Certificate] = None
 
-
     def add_education(self, education):
         self.educations.append(education)
 
@@ -86,9 +85,10 @@ def sample_resume() -> Resume:
     )
     # Prepare summary
     summary_str = "Dedicated and detail-oriented professional with a strong educational background and hands-on " \
-              "experience in software development. Seeking a challenging position in a progressive organization where " \
-              "my skills and expertise in programming and problem-solving will contribute to the company's success."
-    sumary = Summary(summary_str)
+                  "experience in software development. Seeking a challenging position in a progressive organization " \
+                  "where " \
+                  "my skills and expertise in programming and problem-solving will contribute to the company's success."
+    summary = Summary(summary_str)
     # Prepare work experience
     work_experience = [Experience(
         company_name="Tech Solutions",
