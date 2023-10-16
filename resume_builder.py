@@ -174,14 +174,14 @@ class ResumeBuilder(FPDF):
 
         # Attach degree type | field of study
         self.ln(4)
-        self._add_text_at_position(position="l", text=" | ".join((education.degree_type, education.field_of_study)))
-        start_grad_str = " - ".join([education.start_date, education.graduated_date])
-
+        degree_study = " | ".join(self._filter_valid_str([education.degree_type, education.field_of_study]))
+        self._add_text_at_position(position="l", text=degree_study)
+        start_grad_str = " - ".join(self._filter_valid_str([education.start_date, education.graduated_date]))
         self._add_text_at_position(literal="I", position="r", font_size=8, text=start_grad_str, text_color=text_color)
 
         # Attach score
         self.ln(4)
-        scores_str = ": ".join([education.score_type.upper(), education.scores])
+        scores_str = ": ".join(self._filter_valid_str([education.score_type.upper(), education.scores]))
         self._add_text_at_position(position="l", text=scores_str)
 
     def add_skill_set(self, skill_set: SkillSets):
@@ -307,6 +307,10 @@ class ResumeBuilder(FPDF):
                 self.ln(5)
 
     # Utility methods
+    @staticmethod
+    def _filter_valid_str(self, *args: List[str]) -> List[str]:
+        return [item for item in args if len(item) > 0]
+
     def _add_text_box_small(self,
                             font="Times",
                             literal="",

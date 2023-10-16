@@ -1,6 +1,5 @@
 class Project:
-    def __init__(self, name="", title="", technologies="", link="", description=""):
-        self.name = name
+    def __init__(self, title="", technologies="", link="", description=""):
         self.title = title
         self.technologies = technologies
         self.link = link
