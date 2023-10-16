@@ -1,0 +1,3 @@
+fpdf
+mypy
+prompt_toolkit
