@@ -10,7 +10,7 @@ This project is designed to help users create professional resumes using Python.
 </div>
 
 # Demo:
-<!-- Link of my demo -->
+<img src="sample/sample_demo.gif" width="600"/>
 
 # Installation:
 ##### 1 . Clone the repository:
