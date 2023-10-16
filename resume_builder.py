@@ -1,7 +1,5 @@
 from typing import List
-
 from fpdf import FPDF
-
 from resume_components import PersonalInfo, Experience, Education, SkillSets, Project, Certificate
 
 
