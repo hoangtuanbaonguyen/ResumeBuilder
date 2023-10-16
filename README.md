@@ -1,4 +1,4 @@
-# Resume Builder
+# 📝Resume Builder
 
 This project is designed to help users create professional resumes using Python. With the simplicity of the Python programming language and the convenience of the Python terminal, creating customized resumes has never been easier.
 
@@ -29,7 +29,7 @@ cd ResumeBulder
 pip install -r requirements.txt
 ```
 
-## Requirements
+#### Requirements
 * [prompt_toolkit 3.0](https://python-prompt-toolkit.readthedocs.io/en/master/)
 * [mypy](https://mypy.readthedocs.io/en/stable/)
 * [pyfpdf](https://pyfpdf.readthedocs.io/en/latest/)
@@ -39,12 +39,12 @@ pip install -r requirements.txt
 python project.py
 ```
 2. Follow the prompt in the terminal to input your personal information, summary, work experiences, projects, educations, skills, etc.
-3. Type 'quit' or 'q' to save and exit the terminal. The application will generate a resume and save it as a PDF file in the project directory.
+3. Type '**quit**' or '**q**' to save and exit the terminal. The application will generate a resume and save it as a PDF file in the project directory.
 
 # License:
 
 This project is licensed under the [GNU General Public License v3.0](LICENSE) - see the LICENSE file for details.
-### Happy Coding! 😊
+# Happy Coding! 😊
 
 Thank you for checking out this project! We hope you find it helpful and inspiring. If you have any questions, issues, or ideas for improvement, feel free to get in touch. Happy coding!
 
