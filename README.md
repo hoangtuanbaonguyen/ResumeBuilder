@@ -32,7 +32,7 @@ pip install -r requirements.txt
 #### Requirements
 * [prompt_toolkit 3.0](https://python-prompt-toolkit.readthedocs.io/en/master/)
 * [mypy](https://mypy.readthedocs.io/en/stable/)
-* [pyfpdf](https://pyfpdf.readthedocs.io/en/latest/)
+* [fpdf2](https://pypi.org/project/fpdf2/)
 # Usage
 1. Run ResumeBuilder:
 ```bash
