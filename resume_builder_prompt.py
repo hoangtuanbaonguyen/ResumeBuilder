@@ -165,7 +165,7 @@ def resume_program():
     # Show introduction
     print("Welcome to Easy Resume Builder - Your Terminal Resume Builder!\n"
           "Create professional resumes instantly. Easy commands, custom templates.\n"
-          "[https://github.com/hoangtuanbaonguyen/Resume-Builder]\n")
+          "[https://github.com/hoangtuanbaonguyen/ResumeBuilder]\n")
 
     # Prompt menu
     while True:
