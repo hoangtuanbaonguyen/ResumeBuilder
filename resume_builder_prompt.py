@@ -5,7 +5,7 @@ from resume import Resume
 from typing import List
 from resume_builder import ResumeBuilder
 from resume import sample_resume
-from resume_components import PersonalInfo, Experience, Education, SkillSets, Project, Certificate
+from resume_components import PersonalInfo, Experience, Education, SkillSets, Project, Certificate, Summary
 
 
 class DynamicPrompt:
@@ -28,6 +28,7 @@ class DynamicPrompt:
     def create_prompts(self):
         for key, value in self.class_instance.__dict__.items():
             if not key.startswith("__"):  # Exclude special attributes
+                # List instance behavior
                 if isinstance(value, list):
                     prompt_text = f"Enter number of {key.replace('_', ' ').capitalize()}: "
                     numbers = 0
@@ -35,7 +36,7 @@ class DynamicPrompt:
                     # Get number of input
                     while True:
                         try:
-                            numbers = int(self.session.prompt(prompt_text, style=self.style))
+                            numbers = int(self.session.prompt(prompt_text, style=self.style).strip())
                             break
                         except ValueError:
                             pass
@@ -46,17 +47,34 @@ class DynamicPrompt:
                         try:
                             prompt_text = f"Enter {key[:-1].replace('_', ' ').capitalize()} {index + 1}: "
                             user_input = self.session.prompt(prompt_text, style=self.style).strip()
+
                             if len(user_input) > 0:
                                 inputs.append(user_input)
+
                         except IOError or KeyboardInterrupt:
                             break
                     # Store inputs into class-instance
                     setattr(self.class_instance, key, inputs)
 
+                # Multiple lines input
+                elif key in ["description", "content"]:
+                    prompt_text = f"Enter {key.replace('_', ' ').capitalize()}"
+                    limit_row = 20
+                    lines = []
+                    for order in range(1,limit_row + 1):
+                        user_input = self.session.prompt(prompt_text + f" line {order}: ", style=self.style).strip()
+                        if len(user_input) > 0:
+                            lines.append(user_input)
+                        else:
+                            break
+
+                    setattr(self.class_instance, key, "\n".join(lines))
+
+                # Single line input
                 else:
                     prompt_text = f"Enter {key.replace('_', ' ').capitalize()}: "
-                    user_input = self.session.prompt(prompt_text, style=self.style)
-                    setattr(self.class_instance, key, user_input)
+                    user_input = self.session.prompt(prompt_text, style=self.style).strip()
+                    setattr(self.class_instance, key, user_input.strip())
 
 
 def prompt_personal_info():
@@ -67,9 +85,10 @@ def prompt_personal_info():
 
 
 def prompt_summary() -> str:
-    session = PromptSession()
+    instance = Summary()
     message = "Fill your summary: "
-    return session.prompt(message)
+    DynamicPrompt.input_instance(instance, message)
+    return instance
 
 
 def prompt_skill_set() -> SkillSets:
@@ -165,7 +184,7 @@ def resume_program():
     # Show introduction
     print("Welcome to Easy Resume Builder - Your Terminal Resume Builder!\n"
           "Create professional resumes instantly. Easy commands, custom templates.\n"
-          "[https://github.com/hoangtuanbaonguyen/Resume-Builder]\n")
+          "[https://github.com/hoangtuanbaonguyen/ResumeBuilder]\n")
 
     # Prompt menu
     while True:
@@ -177,7 +196,6 @@ def resume_program():
             if 0 <= index < len(component_names):
                 # Get component name from name list
                 component_name = component_names[index]
-
                 if component_name == "personal_info":
                     personal_info = prompt_personal_info()
                     resume_builder.add_personal_info(personal_info)
@@ -195,7 +213,7 @@ def resume_program():
                     resume_builder.add_educations(educations)
                 elif component_name == "certificates":
                     certs = prompt_certificate()
-                    resume_builder.add_certificates(certs)
+                    resume_builder.add_certificates(certs, vertical_order=True)
                 elif component_name == "skills":
                     skills = prompt_skill_set()
                     resume_builder.add_skill_set(skills)

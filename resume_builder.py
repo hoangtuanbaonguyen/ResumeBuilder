@@ -1,6 +1,6 @@
 from typing import List
 from fpdf import FPDF
-from resume_components import PersonalInfo, Experience, Education, SkillSets, Project, Certificate
+from resume_components import PersonalInfo, Experience, Education, SkillSets, Project, Certificate, Summary
 
 
 class ResumeBuilder(FPDF):
@@ -69,18 +69,18 @@ class ResumeBuilder(FPDF):
                                    position="c",
                                    text=contacts_str)
 
-    def add_summary(self, text: str):
+    def add_summary(self, summary: Summary):
         """
         Add Summary portion into the pdf file
         :param text: input summary
         :return:
         """
-        if text == "":
+        if summary.content == "":
             return
 
         # Attach summary title + line
         self._add_liner("Summary")
-        self._add_text_box(text=text)
+        self._add_text_box(text=summary.content)
 
     def add_work_experiences(self, work_experience: List[Experience]):
         """
@@ -368,7 +368,7 @@ class ResumeBuilder(FPDF):
         if text_color is None:
             text_color = [0, 0, 0]
 
-        text = self.multilines_text(text, "+")
+        text = self.multilines_text(text, "")
 
         # Attach a multi cell, which is a text box
         self.set_x(self.l_margin - 1)

@@ -1,16 +1,17 @@
 from typing import List
-from resume_components import PersonalInfo, Experience, SkillSets, Certificate, Project, Education
+from resume_components import PersonalInfo, Experience, SkillSets, Certificate, Project, Education, Summary
 
 
 class Resume:
     def __init__(self):
+        self.summary: Summary = None
         self.personal_info: PersonalInfo = None
         self.educations: List[Education] = None
         self.experiences: List[Experience] = None
         self.skills: SkillSets = None
         self.projects: List[Project] = None
         self.certificates: List[Certificate] = None
-        self.summary: str = None
+
 
     def add_education(self, education):
         self.educations.append(education)
@@ -84,10 +85,10 @@ def sample_resume() -> Resume:
         links=["linkedin.com/in/tuanbao", "twitter.com/tuanbao"]
     )
     # Prepare summary
-    summary = "Dedicated and detail-oriented professional with a strong educational background and hands-on " \
+    summary_str = "Dedicated and detail-oriented professional with a strong educational background and hands-on " \
               "experience in software development. Seeking a challenging position in a progressive organization where " \
               "my skills and expertise in programming and problem-solving will contribute to the company's success."
-
+    sumary = Summary(summary_str)
     # Prepare work experience
     work_experience = [Experience(
         company_name="Tech Solutions",
