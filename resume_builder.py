@@ -310,7 +310,7 @@ class ResumeBuilder(FPDF):
     @staticmethod
     def _filter_valid_str(self, *args: List[str]) -> List[str]:
         """
-        Filter the given str list, keep non empty string
+        Filter the given str list, keep non-empty string
         :param self:
         :param args:
         :return:
