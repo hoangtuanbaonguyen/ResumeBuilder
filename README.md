@@ -16,7 +16,7 @@ This project is designed to help users create professional resumes using Python.
 ##### 1 . Clone the repository:
 ```bash
 git clone https://github.com/hoangtuanbaonguyen/ResumeBuilder.git
-cd ResumeBulder
+cd ResumeBuilder
 ```
 ##### 2 . Install Python (if not already installed):
 
