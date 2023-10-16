@@ -309,6 +309,12 @@ class ResumeBuilder(FPDF):
     # Utility methods
     @staticmethod
     def _filter_valid_str(self, *args: List[str]) -> List[str]:
+        """
+        Filter the given str list, keep non empty string
+        :param self:
+        :param args:
+        :return:
+        """
         return [item for item in args if len(item) > 0]
 
     def _add_text_box_small(self,
