@@ -157,7 +157,6 @@ Actively participated in the Agile development process, contributing innovative 
     projects = []
     project1 = Project(
         name="Online Bookstore",
-        title="Full Stack Web Development Project",
         technologies="Django, JavaScript, MySQL",
         link="https://example.com/bookstore",
         description="Developed a fully functional online bookstore with user authentication, product search, and online payment features."
@@ -165,7 +164,6 @@ Actively participated in the Agile development process, contributing innovative 
 
     project2 = Project(
         name="Task Manager App",
-        title="Mobile App Development Project",
         technologies="React Native, Node.js, MongoDB",
         link="https://example.com/task-manager",
         description="Built a mobile task manager app for Android and iOS devices. Implemented user authentication and "
@@ -174,7 +172,6 @@ Actively participated in the Agile development process, contributing innovative 
 
     project3 = Project(
         name="Data Visualization Dashboard",
-        title="Data Science Project",
         technologies="Python, Pandas, Matplotlib, Tableau",
         link="https://example.com/data-dashboard",
         description="Created a data visualization dashboard for analyzing sales data. Used various Python libraries "

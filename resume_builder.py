@@ -235,7 +235,7 @@ class ResumeBuilder(FPDF):
             return
 
         # Attach project title
-        self._add_text_at_position(position="l", literal="B", font_size=10, text=project.title)
+        self._add_text_at_position(position="l", literal="B", font_size=10, text=project.name)
         # Attach project link
         if project.link != "":
             self._add_text_at_position(position="r", font_size=8,
@@ -308,12 +308,15 @@ class ResumeBuilder(FPDF):
 
     # Utility methods
     @staticmethod
-    def _filter_valid_str(self, *args: str) -> List[str]:
+    def _filter_valid_str(*args: str) -> List[str]:
         """
-        Filter the given str list, keep non-empty string
-        :param self:
-        :param args:
-        :return:
+        Filter the given list of strings and keep non-empty strings.
+
+        Args:
+            *args (str): Variable number of string arguments.
+
+        Returns:
+            List[str]: List of non-empty strings.
         """
         return [item for item in args if len(item) > 0]
 
