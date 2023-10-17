@@ -1,9 +1,20 @@
-# 📝Resume Builder
-[![Static Badge](https://img.shields.io/badge/license-GPLv3.0-blue)](LICENSE)
+# Introduction
+This is my final project of _CS50's Introduction to Programming with Python_
 
-**Name: Nguyen Hoang Tuan Bao      
-Location: Ho Chi Minh City, Vietnam     
-[Link demo](https://youtu.be/uzJiWAWKzD0)**
+**About me**    
+**Nguyen Hoang Tuan Bao**     
+**Ho Chi Minh City, Vietnam**   
+
+
+**Certificate**   
+<img src="https://certificates.cs50.io/36e32b83-e384-4de9-a15e-812a17ebbd8a.png" width="500"/>
+
+
+# 📝Resume Builder
+>**[DEMO](https://youtu.be/uzJiWAWKzD0)**    
+>**[Author](https://github.com/hoangtuanbaonguyen)**
+
+[![Static Badge](https://img.shields.io/badge/license-GPLv3.0-blue)](LICENSE)
 
 This project is designed to help users create professional resumes using Python. With the simplicity of the Python programming language and the convenience of the Python terminal, creating customized resumes has never been easier.
 
