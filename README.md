@@ -30,7 +30,6 @@ pip install -r requirements.txt
 ```
 
 ##### Requirements
-* [prompt_toolkit 3.0](https://python-prompt-toolkit.readthedocs.io/en/master/)
 * [mypy](https://mypy.readthedocs.io/en/stable/)
 * [fpdf2](https://pypi.org/project/fpdf2/)
 # Usage
