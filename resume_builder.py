@@ -1,11 +1,13 @@
 from typing import List
 from fpdf import FPDF
+from resume import Resume
 from resume_components import PersonalInfo, Experience, Education, SkillSets, Project, Certificate, Summary
 
 
 class ResumeBuilder(FPDF):
     def __init__(self):
         super().__init__()
+        self.resume = Resume()
         self.default_setting()
 
     def default_setting(self):
@@ -68,10 +70,13 @@ class ResumeBuilder(FPDF):
                                    font_size=10,
                                    position="c",
                                    text=contacts_str)
+        # Update resume
+        self.resume.personal_info = personal_info
 
     def add_summary(self, summary: Summary):
         """
         Add Summary portion into the pdf file
+        :param summary:
         :param text: input summary
         :return:
         """
@@ -81,6 +86,9 @@ class ResumeBuilder(FPDF):
         # Attach summary title + line
         self._add_liner("Summary")
         self._add_text_box(text=summary.content)
+
+        # Update resume
+        self.resume.summary = summary
 
     def add_work_experiences(self, work_experience: List[Experience]):
         """
@@ -100,6 +108,8 @@ class ResumeBuilder(FPDF):
             self.ln(5)
 
         self.ln(-5)
+        # Update resume
+        self.resume.experiences = work_experience
 
     def _add_experience(self, experience: Experience):
         """
@@ -156,6 +166,8 @@ class ResumeBuilder(FPDF):
             self.ln(5)
 
         self.ln(-5)
+        # Update resume
+        self.resume.educations = educations
 
     def _add_education(self, education: Education):
         """
@@ -208,6 +220,8 @@ class ResumeBuilder(FPDF):
                 self._add_text_at_position(font_size=8, position="l", text=skills_str)
                 self.ln(4)
         self.ln(-4)
+        # Update resume
+        self.resume.skills = skill_set
 
     def add_projects(self, projects: List[Project]):
         """
@@ -224,6 +238,8 @@ class ResumeBuilder(FPDF):
             self._add_project(project)
             self.ln(6)
         self.ln(-6)
+        # Update resume
+        self.resume.projects = projects
 
     def _add_project(self, project: Project):
         """
@@ -270,6 +286,8 @@ class ResumeBuilder(FPDF):
             for index, cert in enumerate(certificates):
                 self._add_certificate(cert, index)
         self.ln(-5)
+        # Update resume
+        self.resume.certificates = certificates
 
     def _add_certificate(self, certificate: Certificate, index=0, vertical_order=False):
         """

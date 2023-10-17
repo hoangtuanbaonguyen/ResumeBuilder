@@ -1,6 +1,3 @@
-import sys
-from prompt_toolkit import PromptSession
-from prompt_toolkit.styles import Style
 from resume import Resume
 from typing import List
 from resume_builder import ResumeBuilder
@@ -11,8 +8,6 @@ from resume_components import PersonalInfo, Experience, Education, SkillSets, Pr
 class DynamicPrompt:
     def __init__(self, class_instance):
         self.class_instance = class_instance
-        self.style = Style.from_dict({"prompt": "bold"})
-        self.session = PromptSession()
 
     @staticmethod
     def input_instance(instance, message=""):
@@ -31,12 +26,11 @@ class DynamicPrompt:
                 # List instance behavior
                 if isinstance(value, list):
                     prompt_text = f"Enter number of {key.replace('_', ' ').capitalize()}: "
-                    numbers = 0
 
                     # Get number of input
                     while True:
                         try:
-                            numbers = int(self.session.prompt(prompt_text, style=self.style).strip())
+                            numbers = int(input(prompt_text).strip())
                             break
                         except ValueError:
                             pass
@@ -46,7 +40,7 @@ class DynamicPrompt:
                     for index in range(numbers):
                         try:
                             prompt_text = f"Enter {key[:-1].replace('_', ' ').capitalize()} {index + 1}: "
-                            user_input = self.session.prompt(prompt_text, style=self.style).strip()
+                            user_input = input(prompt_text).strip()
 
                             if len(user_input) > 0:
                                 inputs.append(user_input)
@@ -61,8 +55,8 @@ class DynamicPrompt:
                     prompt_text = f"Enter {key.replace('_', ' ').capitalize()}"
                     limit_row = 20
                     lines = []
-                    for order in range(1,limit_row + 1):
-                        user_input = self.session.prompt(prompt_text + f" line {order}: ", style=self.style).strip()
+                    for order in range(1, limit_row + 1):
+                        user_input = input(prompt_text + f" line {order}: ").strip()
                         if len(user_input) > 0:
                             lines.append(user_input)
                         else:
@@ -73,7 +67,7 @@ class DynamicPrompt:
                 # Single line input
                 else:
                     prompt_text = f"Enter {key.replace('_', ' ').capitalize()}: "
-                    user_input = self.session.prompt(prompt_text, style=self.style).strip()
+                    user_input = input(prompt_text).strip()
                     setattr(self.class_instance, key, user_input.strip())
 
 
@@ -84,7 +78,7 @@ def prompt_personal_info():
     return instance
 
 
-def prompt_summary() -> str:
+def prompt_summary() -> Summary:
     instance = Summary()
     message = "Fill your summary: "
     DynamicPrompt.input_instance(instance, message)
@@ -181,15 +175,9 @@ def resume_program():
     resume_builder = ResumeBuilder()
     # Extract component names from resume instance
     component_names = [key for key in resume_instance.__dict__.keys()]
-    # Show introduction
-    print("Welcome to Easy Resume Builder - Your Terminal Resume Builder!\n"
-          "Create professional resumes instantly. Easy commands, custom templates.\n"
-          "[https://github.com/hoangtuanbaonguyen/ResumeBuilder]\n")
-
     # Prompt menu
     while True:
-        menu_layout = create_menu_layout(component_names)
-        print(menu_layout)
+        print(create_menu_layout(component_names))
         try:
             user_input = input(f"Enter your choice: ").strip().lower()
             index = int(user_input) - 1
@@ -221,22 +209,18 @@ def resume_program():
         except ValueError:
             if user_input in ["quit", "q"]:
                 # Save PDF file
-                output_file = "MyResume.pdf"
                 print("Perform save your resume and exit.")
-                print(f"Resume file: {output_file}")
-                resume_builder.output(output_file)
-                sys.exit()
+                # Return resume builder
+                return resume_builder
             elif user_input in ["reset", "r"]:
                 # Refresh resume_builder and component names
+                print("Perform refresh resume...")
                 resume_builder = ResumeBuilder()
                 component_names = [key for key in resume_instance.__dict__.keys()]
             elif user_input == "sample":
-                # Save sample resume
-                file_name = "SampleResume.pdf"
+                # Return sample resume
                 print("Perform create sample resume and exit.")
-                print(f"Resume file: {file_name}")
-                create_sample_resume().output(file_name)
-                sys.exit()
+                return create_sample_resume()
 
 
 def create_sample_resume() -> ResumeBuilder:
