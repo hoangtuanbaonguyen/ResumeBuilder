@@ -8,11 +8,11 @@ import unittest
 import os
 
 
-def test_project_when_get_introduction_then_get_correct_introduction():
+def test_get_intro_layout():
     assert get_intro_layout().startswith("Welcome to Easy Resume Builder - Your Terminal Resume Builder")
 
 
-def test_project_when_save_pdf_resume_then_get_correct_file():
+def test_save_pdf_resume():
     # Prepare sample resume
     resume_builder = ResumeBuilder()
     file_name = "example_file.pdf"
@@ -23,7 +23,7 @@ def test_project_when_save_pdf_resume_then_get_correct_file():
     os.remove(file_name)
 
 
-class TestResumePrompt(unittest.TestCase):
+class test_get_user_input_resume(unittest.TestCase):
     SAMPLE_RESUME = resume.sample_resume()
 
     @patch("builtins.input", side_effect=["2", "Alice", "", "q"])
